@@ -22,10 +22,10 @@ app.get('/', function(req, res) {
   if (spotifyApi.getAccessToken()) {
     return res.send('You are logged in.');
   }
-  return res.send('<a href="/authorise">Authorise</a>');
+  return res.send('<a href="/authorize">Authorize Spotify Account</a>');
 });
 
-app.get('/authorise', function(req, res) {
+app.get('/authorize', function(req, res) {
   var scopes = ['playlist-modify-public', 'playlist-modify-private'];
   var state  = new Date().getTime();
   var authoriseURL = spotifyApi.createAuthorizeURL(scopes, state);
@@ -70,7 +70,7 @@ app.post('/store', function(req, res) {
           return res.send(err.message);
         });
     }, function(err) {
-      return res.send('Could not referesh access token, you probably need to auth yourself again.');
+      return res.send('Could not refresh access token, you probably need to auth yourself again.');
     });
 });
 
