@@ -80,6 +80,9 @@ app.post('/store', function (req, res) {
                                     console.log('Body: ' + body);
                                 });
                             });
+                            req.on('error', function(e) {
+                                console.log('problem with request: ' + e.message);
+                            });
                             req.write('"text": "Track added to playlist."}')
                             req.end();
 
