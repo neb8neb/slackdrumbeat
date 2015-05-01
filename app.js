@@ -69,10 +69,21 @@ app.post('/store', function (req, res) {
                         .then(function (data) {
 
                             // Post to slack webhook.
+                            console.log('full track:');
+                            console.log(track);
+                            console.log('===========');
+                            console.log('track artists:')
+                            console.log(track.artists);
+                            console.log('artist name:');
+                            console.log(track.artists[0].name);
+                            console.log('track name:');
+                            console.log(track.name);
+                            var artistName = track.artists[0].name;
+                            var trackName = track.name;
                             slack.webhook({
                                 channel: "#jukebot",
                                 username: "jukebot",
-                                text: "Track added to playlist."
+                                text: "Track " + trackName + " by " + artistName + " added to playlist."
                             }, function(err, response) {
                                 console.log(response);
                             });
