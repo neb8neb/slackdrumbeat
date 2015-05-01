@@ -1,8 +1,8 @@
 var express = require('express');
 var bodyParser = require('body-parser');
-var request = require('request');
 var dotenv = require('dotenv');
 var SpotifyWebApi = require('spotify-web-api-node');
+var Slack = require('slack-node');
 
 dotenv.load();
 
@@ -11,6 +11,9 @@ var spotifyApi = new SpotifyWebApi({
     clientSecret: process.env.SPOTIFY_SECRET,
     redirectUri: process.env.SPOTIFY_REDIRECT_URI
 });
+
+var slack = new Slack();
+slack.setWebhook(process.env.SLACK_WEBHOOK_URL);
 
 var app = express();
 app.use(bodyParser.json());
@@ -65,27 +68,14 @@ app.post('/store', function (req, res) {
                     spotifyApi.addTracksToPlaylist(process.env.SPOTIFY_USERNAME, process.env.SPOTIFY_PLAYLIST_ID, ['spotify:track:' + trackId])
                         .then(function (data) {
 
-                            //console.log(data);
-                            //var options = {
-                            //    host: 'hooks.slack.com',
-                            //    path: process.env.SLACK_WEBHOOK_URL,
-                            //    port: 80,
-                            //    method: 'POST'
-                            //}
-                            //var req = http.request(options, function(res) {
-                            //    console.log('Status: ' + res.statusCode);
-                            //    console.log('Headers: ' + JSON.stringify(res.headers));
-                            //    res.setEncoding('utf8');
-                            //    res.on('data', function (chunk) {
-                            //        console.log('Response: ' + chunk);
-                            //    });
-                            //});
-                            //req.on('error', function(e) {
-                            //    console.log('problem with request: ' + e.message);
-                            //});
-                            //req.write('"text": "Track added to playlist."}')
-                            //req.end();
-                            request.post(process.env.SLACK_WEBHOOK_URL).form({text: 'Track added to playlist.'});
+                            // Post to slack webhook.
+                            slack.webhook({
+                                channel: "#jukebot",
+                                username: "jukebot",
+                                text: "Track added to playlist."
+                            }, function(err, response) {
+                                console.log(response);
+                            });
 
                             return res.send('Track added!');
                         }, function (err) {
