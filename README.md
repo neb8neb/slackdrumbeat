@@ -1,5 +1,6 @@
 # slackbox
-Spotify playlist collaboration through Slack. Brought to you by the lovely people at [Benchmark](http://benchmark.co.uk).
+Spotify playlist collaboration through Slack. Brought to you by the lovely people at [TodayTix](http://todaytix.com),
+inspired by a similar tool by Benchmark Studios (http://benchmark.co.uk).
 
 [![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
 
@@ -25,7 +26,7 @@ Also, don't forget to make a playlist. If you do this through [Spotify's web int
 
 ###Environment variables
 
-Once you've cloned slackbox or hit the "Deploy with Heroku" button you'll need to setup the following environment variables. These can either be stored in a `.env` or set up as config variables in Heroku.
+Once you've cloned slackbox you'll need to setup the following environment variables. These can either be stored in a `.env` or set up as config variables in Heroku.
 
 * `SLACK_TOKEN` - The token from Slack's Slash Command.
 * `SPOTIFY_KEY` - Your Spotify application key (a.k.a Client ID).

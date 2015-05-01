@@ -9,9 +9,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "benchmarkstudios/slackbox"
+    "url": "TodayTix/jukebot"
   },
-  "author": "Mike Francis <mikeffrancis@gmail.com>",
+  "author": "Jesse Stuart <jesse.stuart@todaytix.com>",
   "license": "MIT",
   "devDependencies": {},
   "dependencies": {
