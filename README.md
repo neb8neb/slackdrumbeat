@@ -2,8 +2,6 @@
 Spotify playlist collaboration through Slack. Brought to you by the lovely people at [TodayTix](http://todaytix.com),
 inspired by a similar tool by Benchmark Studios (http://benchmark.co.uk).
 
-[![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
-
 Simply create a Slash Command, such as `/jukebox`, which accepts a track name (also the artist too for a less fuzzy search) to add to a pre-defined Spotify playlist:
 
     /jukebox Bell Biv DeVoe – Poison
